@@ -12,7 +12,6 @@ class AuthenticateUserController {
     } catch (err) {
       return response.json({ error: err.message })
     }
-
   }
 }
 
