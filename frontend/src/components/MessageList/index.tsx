@@ -1,8 +1,27 @@
+import { useEffect, useState } from 'react';
+import { api } from '../../services/api';
 import styles from './styles.module.scss';
+
+type Message = {
+  id: string;
+  text: string;
+  user: {
+    name: string;
+    avatar_url: string;
+  }
+}
 
 
 export function MessageList() {
+
+  const [ messages ,setMessages ] = useState<Message[]>([])
   
+  useEffect(()=> {
+    api.get('messages/last3').then(response => {
+      setMessages(response.data)
+    })
+
+  }, [])
 
   return (
     <div className={styles.messageListWrapper}>
@@ -24,7 +43,7 @@ export function MessageList() {
       </svg>
 
       <ul className={styles.messageList}>
-        {/* {messages.map(message => {
+        {messages.map(message => {
           return (
             <li key={message.id} className={styles.message}>
               <p className={styles.messageContent}>{message.text}</p>
@@ -36,7 +55,7 @@ export function MessageList() {
               </div>
             </li>
           );
-        })} */}
+        })}
       </ul>
     </div>
   )
