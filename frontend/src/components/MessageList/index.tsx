@@ -11,7 +11,6 @@ type Message = {
   }
 }
 
-
 export function MessageList() {
 
   const [ messages ,setMessages ] = useState<Message[]>([])
