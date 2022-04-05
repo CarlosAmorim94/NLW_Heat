@@ -6,17 +6,18 @@ import styles from './styles.module.scss';
 
 export function SendMessageForm() {
 
-  const { signOut, user } = useContext(AuthContext)
-  const [ message, setMessage ] = useState('')
+  const { user, signOut } = useContext(AuthContext)
+  const [message, setMessage] = useState('')
 
-  async function handleSendMessage(e: FormEvent) {
-    e.preventDefault()
+  async function handleSendMessage(event: FormEvent) {
+    event.preventDefault()
 
     if (!message.trim()) {
-      return
+      return;
     }
 
     await api.post('messages', { message })
+
     setMessage('')
   }
  
