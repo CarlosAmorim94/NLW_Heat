@@ -46,6 +46,10 @@ export function AuthProvider( props: AuthProvider) {
 
     localStorage.setItem('@dowhile:token', token)
 
+    api.defaults.headers.common.authorization = `Bearer ${token}`
+
+    setUser(user)
+
   }
 
   function signOut() {
